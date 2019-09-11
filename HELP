@@ -1,0 +1,11 @@
+nohup python train.py --word2vec=./embedding/skip_s300.txt --data=./data/assin2.csv --epochs=100  --save=./model/ --cudnnlstm=false &
+
+gcloud compute ssh --project totemic-bonus-247114 --zone us-west1-b pytorch-1-vm -- -L 8080:localhost:8080
+
+conda create -n neuraltranslate python=3.6 anaconda
+source activate neuraltranslate
+source activate semanticsimilarity
+
+sudo rm -f /etc/boto.cfg
+
+watch -n0.1 nvidia-smi
